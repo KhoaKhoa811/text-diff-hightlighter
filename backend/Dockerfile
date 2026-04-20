@@ -1,0 +1,13 @@
+# Build stage
+FROM eclipse-temurin:17-jdk-jammy AS build
+WORKDIR /app
+COPY pom.xml ./
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Runtime stage
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /app
+COPY --from=build /app/target/text-diff-highlighter-1.0.0.jar /app/app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/app.jar", "--server.port=${PORT:-8080}"]
