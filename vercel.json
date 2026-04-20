@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/dist/text-diff-highlighter",
-  "installCommand": "cd frontend && npm install",
-  "framework": null
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist/text-diff-highlighter",
+  "installCommand": "npm install",
+  "framework": "angular"
 }
