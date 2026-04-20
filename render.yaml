@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: text-diff-backend
+    env: java
+    branch: main
+    root: backend
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/text-diff-highlighter-1.0.0.jar --server.port=$PORT
+    plan: free
