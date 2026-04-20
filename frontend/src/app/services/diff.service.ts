@@ -25,7 +25,9 @@ export interface DiffSegment {
 export class DiffService {
   private apiUrl = `${environment.apiUrl}/api/diff`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    console.log('DiffService API URL:', this.apiUrl);
+  }
 
   /**
    * Sends two texts to the backend for comparison
