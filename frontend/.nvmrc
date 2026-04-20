@@ -1,0 +1,9 @@
+{
+  "name": "text-diff-highlighter-frontend",
+  "version": "1.0.0",
+  "description": "Angular frontend for text difference highlighter",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

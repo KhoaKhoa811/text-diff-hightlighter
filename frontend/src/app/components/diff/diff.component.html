@@ -1,0 +1,80 @@
+<div class="diff-container">
+  <!-- Input Section -->
+  <div class="input-section">
+    <div class="text-input-wrapper">
+      <label for="text1" class="input-label">Text 1</label>
+      <textarea
+        id="text1"
+        [(ngModel)]="text1"
+        placeholder="Enter first text here..."
+        class="text-input"
+        rows="8"
+      ></textarea>
+    </div>
+
+    <div class="text-input-wrapper">
+      <label for="text2" class="input-label">Text 2</label>
+      <textarea
+        id="text2"
+        [(ngModel)]="text2"
+        placeholder="Enter second text here..."
+        class="text-input"
+        rows="8"
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Control Buttons -->
+  <div class="button-section">
+    <button
+      class="btn btn-primary"
+      (click)="onCompare()"
+      [disabled]="loading"
+    >
+      <span *ngIf="!loading">Compare</span>
+      <span *ngIf="loading">Comparing...</span>
+    </button>
+    <button
+      class="btn btn-secondary"
+      (click)="onClear()"
+      [disabled]="loading"
+    >
+      Clear
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    <strong>Error:</strong> {{ error }}
+  </div>
+
+  <!-- Results Section -->
+  <div *ngIf="hasCompared && !loading" class="results-section">
+    <h2 class="results-title">Comparison Results</h2>
+    <div class="diff-result">
+      <div *ngFor="let segment of diffs" [ngClass]="getDiffClass(segment)" class="diff-segment">
+        {{ segment.text }}
+      </div>
+    </div>
+
+    <div *ngIf="diffs.length === 0" class="no-diff-message">
+      The texts are identical!
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div *ngIf="hasCompared && diffs.length > 0" class="legend">
+    <div class="legend-item">
+      <span class="legend-color diff-equal"></span>
+      <span>Unchanged text</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color diff-insert"></span>
+      <span>Added (in Text 2)</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color diff-delete"></span>
+      <span>Removed (in Text 1)</span>
+    </div>
+  </div>
+</div>
