@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface DiffRequest {
   text1: string;
@@ -22,7 +23,7 @@ export interface DiffSegment {
   providedIn: 'root'
 })
 export class DiffService {
-  private apiUrl = 'http://localhost:8080/api/diff';
+  private apiUrl = `${environment.apiUrl}/api/diff`;
 
   constructor(private http: HttpClient) { }
 
